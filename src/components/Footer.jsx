@@ -20,7 +20,7 @@ export default function Home() {
               <span className='pl-[20px]'>
                 {cliente.contactos && `Telf: ${cliente.contactos.telefono}`}   {cliente.contactos && <span><br />{`Cel: ${cliente.contactos.celular}`}</span>}
               </span>
-            </p>
+            </p>   
             <p className='w-full flex justify-start items-center py-3'>
               <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clip-path="url(#clip0_1_443)">

@@ -2,6 +2,7 @@
 import { useUser } from '@/context/Context'
 import { useEffect, useState } from 'react'
 import { onAuth, signInWithEmail, writeUserData, removeData } from '@/firebase/utils'
+import { getDate } from '@/utils/DateFormat'
 import Image from 'next/image'
 import Link from 'next/link'
 import style from '@/app/page.module.css'
@@ -43,7 +44,7 @@ export default function Home() {
         e.preventDefault()
         let key = generateUUID()
         setUserSuccess('Cargando')
-        writeUserData(`/Tracking/${key}`, { ...data, subItems: data2 }, setUserSuccess)
+        writeUserData(`/Tracking/${data['CODIGO DE SERVICIO']}`, { ...data, ['FECHA DE CREACION']: getDate(new Date()), subItems: data2 }, setUserSuccess)
     }
 
     function close(e) {
@@ -69,7 +70,7 @@ export default function Home() {
                         <div className='relative p-5 my-5 mt-10 bg-white space-y-5'>
                             <h5 className='text-center font-medium text-[16px]'>DETALLE DEL SERVICIO {query}<br /> </h5>
 
-                            < InputFlotante type="text" id="floating_5" onChange={(e) => handlerOnChange(e)} defaultValue={data['FECHA DE CREACION']} required label={'FECHA DE CREACION'} shadow='shadow-white' />
+                            < InputFlotante type="date" id="floating_5" onChange={(e) => handlerOnChange(e)} value={getDate(new Date())} disabled required label={'FECHA DE CREACION'} shadow='shadow-white' />
                             < InputFlotante type="text" id="floating_5" onChange={(e) => handlerOnChange(e)} defaultValue={data['CODIGO DE SERVICIO']} required label={'CODIGO DE SERVICIO'} shadow='shadow-white' />
                             < InputFlotante type="number" id="floating_5" onChange={(e) => handlerOnChange(e)} defaultValue={data['CODIGO DE CLIENTE']} required label={'CODIGO DE CLIENTE'} shadow='shadow-white' />
                             < InputFlotante type="number" id="floating_5" onChange={(e) => handlerOnChange(e)} defaultValue={data['MODALIDAD DE TRANSPORTE']} required label={'MODALIDAD DE TRANSPORTE'} shadow='shadow-white' />
@@ -82,15 +83,7 @@ export default function Home() {
                             < InputFlotante type="number" id="floating_5" onChange={(e) => handlerOnChange(e)} defaultValue={data['ETD']} required label={'ETD'} shadow='shadow-white' />
                             < InputFlotante type="number" id="floating_5" onChange={(e) => handlerOnChange(e)} defaultValue={data['ETA']} required label={'ETA'} shadow='shadow-white' />
 
-                            <h5 className='text-center font-medium text-[16px]'>STATUS {query}<br /> </h5>
-
-                            < InputFlotante type="number" id="floating_5" onChange={(e) => handlerOnChange(e)} defaultValue={data['BOOKING']} required label={'BOOKING'} shadow='shadow-white' />
-                            < InputFlotante type="number" id="floating_5" onChange={(e) => handlerOnChange(e)} defaultValue={data['ZARPE']} required label={'ZARPE'} shadow='shadow-white' />
-                            < InputFlotante type="number" id="floating_5" onChange={(e) => handlerOnChange(e)} defaultValue={data['TRANSITO']} required label={'TRANSITO'} shadow='shadow-white' />
-                            < InputFlotante type="number" id="floating_5" onChange={(e) => handlerOnChange(e)} defaultValue={data['ARRIBO A DESTINO']} required label={'ARRIBO A DESTINO'} shadow='shadow-white' />
-
-
-
+                            <h5 className='text-center font-medium text-[16px]'>STATUS +<br /> </h5>
 
                             <div className="relative flex ">
                                 <button type='button' className="bg-red-500 text-white flex font-bold py-2 px-4 rounded-l" onClick={() => handlerLess2()}>
@@ -110,7 +103,7 @@ export default function Home() {
                             }
 
                             <div className='flex justify-center'>
-                                <Button theme="Primary" click={(e) => { saveFrontPage(e,) }}>Guardar</Button>
+                                <Button type='submit' theme="Primary" click={(e) => { saveFrontPage(e,) }}>Guardar</Button>
                             </div>
                         </div>
                     </form>

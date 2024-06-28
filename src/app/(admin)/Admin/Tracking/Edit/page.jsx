@@ -52,15 +52,13 @@ export default function Home() {
     function close(e) {
         router.back()
     }
-    function handlerEdit (r){
-        router.push(`Tracking/Edit?item=${r}`)
-    }
-    console.log(trackingDB)
+    console.log(query)
     useEffect(() => {
         if (window && typeof window !== "undefined") {
             setQuery(window.location.href.split('=')[1])
         }
     }, [cliente, trackingDB])
+
     return (
 
         <div className="min-h-full">
@@ -77,23 +75,13 @@ export default function Home() {
                         X
                     </div>
 
-                    <h5 className='text-center font-medium text-[16px]'>DETALLE DE TRACKING </h5>
-                    <br />
-                    <br />
-
-                    {
-                        trackingDB && trackingDB && Object.entries(trackingDB).map((i, index) => {
-                            return <div className='relative flex justify-between items-center px-5 py-3 border-[.5px] cursor-pointer '  onClick={()=>handlerEdit(i[1]['CODIGO DE SERVICIO'])}>
-                                <span> CODIGO DE SERVICIO: {i[1]['CODIGO DE SERVICIO']}</span>    <span>{i[1]['FECHA DE CREACION']}</span>
-                            </div>
-                        })
-                    }
-                    {/* <form className="relative  pt-5 sm:col-span-3 mb-5 pb-5 border-b-[.5px] border-[#666666]"  >
+                 
+                    <form className="relative  pt-5 sm:col-span-3 mb-5 pb-5 border-b-[.5px] border-[#666666]"  >
 
 
                         {
                             trackingDB && trackingDB && Object.entries(trackingDB).map((i, index) => {
-                                return <div className='relative p-5 my-5 mt-10 bg-white space-y-5 shadow-2xl border-b-[.5px] border-[#666666] '>
+                                return i[1]['CODIGO DE SERVICIO'] === query ? <div className='relative p-5 my-5 mt-10 bg-white space-y-5 shadow-2xl border-b-[.5px] border-[#666666] '>
                                     <h5 className='text-center font-medium text-[16px]'>Editar {query}<br /> <span className='text-[#5c5c5c]'> {i[0]}</span></h5>
 
                                     <h5 className='text-center font-medium text-[16px]'>DETALLE DEL SERVICIO {query}<br /> </h5>
@@ -126,10 +114,11 @@ export default function Home() {
                                     </div>
 
                                 </div>
+                                : ''
                             })
                         }
 
-                    </form> */}
+                    </form>
                 </div>
             </div>
             {success === 'Cargando' && <Loader>ghfhfhj</Loader>}

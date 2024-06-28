@@ -31,7 +31,7 @@ export default function Home() {
     }
     function formHandler(e) {
         e.preventDefault()
-        if (data.mercancia && data.transporte && data[`Valor FOB`] && data[`Costo Transporte ${data.transporte}`] && data['Seguro']) {
+        if (data.mercancia && data.transporte && data[`Valor FOB`] && data[`Costo Transporte ${data.transporte}`] ) {
             setRes(true)
         }
     }
@@ -63,26 +63,26 @@ export default function Home() {
 
     function CIF() {
         if (data.transporte === 'Maritimo') {
-            return (data[`Valor FOB`] * 1 + data[`Costo Transporte ${data.transporte}`] * 1 + data[`Costo Transporte Terrestre Puerto`] * (30 / 100) + data['Seguro'] * 1).toFixed(2)
+            return (data[`Valor FOB`] * 1 + data[`Costo Transporte ${data.transporte}`] * 1 + data[`Costo Transporte Terrestre Puerto`] * (30 / 100) + data['Seguro'] ? data['Seguro'] * 1 :data['Valor FOB'] *0.02).toFixed(2)
         }
         if (data.transporte === 'Aereo') {
-            return (data[`Valor FOB`] * 1 + data[`Costo Transporte ${data.transporte}`] * (25 / 100) + data['Seguro'] * 1).toFixed(2)
+            return (data[`Valor FOB`] * 1 + data[`Costo Transporte ${data.transporte}`] * (25 / 100) + data['Seguro'] ? data['Seguro'] * 1 :data['Valor FOB'] *0.02).toFixed(2)
         }
         if (data.transporte === 'Terrestre') {
-            return (data[`Valor FOB`] * 1 + data[`Costo Transporte ${data.transporte}`] * (30 / 100) + data['Seguro'] * 1).toFixed(2)
+            return (data[`Valor FOB`] * 1 + data[`Costo Transporte ${data.transporte}`] * (30 / 100) + data['Seguro'] ? data['Seguro'] * 1 :data['Valor FOB'] *0.02).toFixed(2)
         }
         return 0
     }
 
     function GA() {
         if (data.mercancia && data[`Valor FOB`] && data.transporte === 'Maritimo' && data[`Costo Transporte Terrestre Puerto`]) {
-            return ((data[`Valor FOB`] * 1 + data[`Costo Transporte ${data.transporte}`] * 1 + data[`Costo Transporte Terrestre Puerto`] * (30 / 100) + data['Seguro'] * 1) * (mercancias.reduce((acc, i) => { return { ...acc, [i.MERCANCIA]: i } }, {})[data.mercancia]['GA'] / 100) * 1).toFixed(2)
+            return ((data[`Valor FOB`] * 1 + data[`Costo Transporte ${data.transporte}`] * 1 + data[`Costo Transporte Terrestre Puerto`] * (30 / 100) + data['Seguro'] ? data['Seguro'] * 1 :data['Valor FOB'] *0.02) * (mercancias.reduce((acc, i) => { return { ...acc, [i.MERCANCIA]: i } }, {})[data.mercancia]['GA'] / 100) * 1).toFixed(2)
         }
         if (data.mercancia && data[`Valor FOB`] && data.transporte === 'Aereo') {
-            return ((data[`Valor FOB`] * 1 + data[`Costo Transporte ${data.transporte}`] * (25 / 100) + data['Seguro'] * 1) * (mercancias.reduce((acc, i) => { return { ...acc, [i.MERCANCIA]: i } }, {})[data.mercancia]['GA'] / 100) * 1).toFixed(2)
+            return ((data[`Valor FOB`] * 1 + data[`Costo Transporte ${data.transporte}`] * (25 / 100) + data['Seguro'] ? data['Seguro'] * 1 :data['Valor FOB'] *0.02) * (mercancias.reduce((acc, i) => { return { ...acc, [i.MERCANCIA]: i } }, {})[data.mercancia]['GA'] / 100) * 1).toFixed(2)
         }
         if (data.mercancia && data[`Valor FOB`] && data.transporte === 'Terrestre') {
-            return ((data[`Valor FOB`] * 1 + data[`Costo Transporte ${data.transporte}`] * (30 / 100) + data['Seguro'] * 1) * (mercancias.reduce((acc, i) => { return { ...acc, [i.MERCANCIA]: i } }, {})[data.mercancia]['GA'] / 100) * 1).toFixed(2)
+            return ((data[`Valor FOB`] * 1 + data[`Costo Transporte ${data.transporte}`] * (30 / 100) + data['Seguro'] ? data['Seguro'] * 1 :data['Valor FOB'] *0.02) * (mercancias.reduce((acc, i) => { return { ...acc, [i.MERCANCIA]: i } }, {})[data.mercancia]['GA'] / 100) * 1).toFixed(2)
         }
         return 0
     }
@@ -109,7 +109,7 @@ export default function Home() {
     CIF() && Object.values(cliente.comisionFTL).find((i) => i.de <= CIF() && i.hasta >= CIF()) && CIF() * Object.values(cliente.comisionFTL).find((i) => i.de <= CIF() && i.hasta >= CIF()).monto
 
     function comisionAgencia() {
-        if (CIF() > 0 && CIF() < 1001) { return '20 USD' }
+        if (CIF() > 0 && CIF() < 1001) { return '20' }
         if (CIF() > 1000 && CIF() < 10001) { if (CIF() && Object.values(cliente.comisionFTL).find((i) => i.de <= CIF() && i.hasta >= CIF()))return (CIF() * Object.values(cliente.comisionFTL).find((i) => i.de <= CIF() && i.hasta >= CIF()).monto *1).toFixed(2) }
         if (CIF() > 10000 && CIF() < 20001) { if (CIF() && Object.values(cliente.comisionFTL).find((i) => i.de <= CIF() && i.hasta >= CIF()))return (CIF() * Object.values(cliente.comisionFTL).find((i) => i.de <= CIF() && i.hasta >= CIF()).monto *1).toFixed(2) }
         if (CIF() > 20000 && CIF() < 30001) { if (CIF() && Object.values(cliente.comisionFTL).find((i) => i.de <= CIF() && i.hasta >= CIF()))return (CIF() * Object.values(cliente.comisionFTL).find((i) => i.de <= CIF() && i.hasta >= CIF()).monto *1).toFixed(2) }
@@ -139,6 +139,24 @@ export default function Home() {
         // // window.open(`https://api.whatsapp.com/send?phone=${perfil.whatsapp.replaceAll(' ', '')}&text=${whatsappMessage}`, '_blank')
         // window.open(`https://api.whatsapp.com/send?phone=+59169941749&text=${whatsappMessage}`, '_blank')
     }
+
+
+
+    const formatoMexico = (number) => {
+
+        const exp = /(\d)(?=(\d{3})+(?!\d))/g;
+
+        const rep = '$1,';
+
+        let arr = number.toString().split('.');
+
+        arr[0] = arr[0].replace(exp, rep);
+
+        return arr[1] ? arr.join('.') : arr[0];
+
+    }
+ 
+
     useEffect(() => {
         setMercancias(Object.values(cliente.mercancias))
     }, [user, cliente])
@@ -176,7 +194,7 @@ export default function Home() {
                                 <InputFlotante type="number" id="floating_5" onChange={onChangeHandler} inputRef={inputRef4} defaultValue={data['Costo Transporte Terrestre Puerto']} required label={`Costo Transporte Terrestre Puerto`} />
                             </>
                         }
-                        <InputFlotante type="number" id="floating_6" onChange={onChangeHandler} inputRef={inputRef5} defaultValue={data['Seguro']} required label={'Seguro'} />
+                        <InputFlotante type="number" id="floating_6" onChange={onChangeHandler} inputRef={inputRef5} value={data['Seguro'] ? data['Seguro'] :data['Valor FOB'] *0.02  } required label={'Seguro'} />
 
                         {res && <table className='relative w-full'>
                             <tbody className='w-full'>
@@ -207,25 +225,25 @@ export default function Home() {
                                 <tr className='relative flex justify-between   w-full '>
                                     <td className='font-bold'>CIF FRONTERA</td>
                                     <td>
-                                        {CIF()} USD
+                                        {formatoMexico(CIF())} USD
                                     </td>
                                 </tr>
                                 <tr className='flex justify-between  w-full '>
                                     <td className='font-bold'>GA</td>
                                     <td>
-                                        {GA()} USD
+                                        {formatoMexico(GA())} USD
                                     </td>
                                 </tr>
                                 <tr className='flex justify-between  w-full '>
                                     <td className='font-bold'>BASE IMPONIBLE IVA</td>
                                     <td>
-                                        {baseImponible()} USD
+                                        {formatoMexico(baseImponible())} USD
                                     </td>
                                 </tr>
                                 <tr className='flex justify-between  w-full '>
                                     <td className='font-bold'>IVA</td>
                                     <td>
-                                        {IVA()} USD
+                                        {formatoMexico(IVA())} USD
                                         {/* {data.mercancia && (CIF() + (CIF() * (mercancias.reduce((acc, i) => { return { ...acc, [i.MERCANCIA]: i } }, {})[data.mercancia]['GA'] / 100))) * (mercancias.reduce((acc, i) => { return { ...acc, [i.MERCANCIA]: i } }, {})[data.mercancia]['IVA'] / 100)} */}
                                     </td>
                                 </tr>
@@ -235,16 +253,16 @@ export default function Home() {
                                 </tr>
                                 <tr className='flex justify-between  w-full '>
                                     <td className='font-bold'>TOTAL IMPUESTOS</td>
-                                    <td>{totalImpuestos()} USD</td>
+                                    <td>{formatoMexico(totalImpuestos())} USD</td>
                                 </tr>
                                 <tr className='flex justify-between  w-full '>
                                     <td className='font-bold'>ALMACENAJE 0,57%CIF</td>
-                                    <td>{almacenaje()} USD</td>
+                                    <td>{formatoMexico(almacenaje())} USD</td>
                                 </tr>
                                 <tr className='flex justify-between  w-full '>
                                     <td className='font-bold'>COMISION AGENCIA</td>
                                     <td>
-                                        {comisionAgencia()} USD
+                                        {formatoMexico(comisionAgencia())} USD
 
                                     </td>
                                 </tr>
@@ -255,13 +273,13 @@ export default function Home() {
                                 <tr className='flex justify-between  w-full '>
                                     <td className='font-bold'>TOTAL DESPACHO ADUANERO</td>
                                     <td>
-                                        {totalDespachoAduanero()} USD
+                                        {formatoMexico(totalDespachoAduanero())} USD
                                     </td>
                                 </tr>
                                 <tr className='flex justify-between  w-full '>
                                     <td className='font-bold'>TOTAL COSTOS IMPORTACION</td>
                                     <td>
-                                        {totalCostosImportacion()}  USD
+                                        {formatoMexico(totalCostosImportacion())}  USD
                                     </td>
                                 </tr>
                             </tbody>

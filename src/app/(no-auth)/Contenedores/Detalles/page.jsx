@@ -40,7 +40,7 @@ function Pages() {
         <div className="relative flex justify-center min-h-screen pt-[70px]">
                 <img src="/airplane-bg.jpg" className='fixed top-0 w-screen h-screen  object-cover ' alt="" />
 
-            <div className="relative  py-[100px] max-w-[960px] bg-white p-[20px]  shadow-[0 4px 8px rgba(0,0,0,0.1)]">
+            <div className="relative  py-[100px] w-[95vw] md:max-w-[960px] bg-white p-[20px]  shadow-[0 4px 8px rgba(0,0,0,0.1)]">
                 {/* <h1 className='font-bold text-[20px]'>Gama Completa de Contenedores - Logistics Gear</h1> */}
 
                 <h2 className='font-bold text-[18px] text-[#333] text-center'>{cliente[query].tarjetas[route]['subtitle 1']}</h2>

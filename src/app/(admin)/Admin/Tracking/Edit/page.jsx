@@ -88,16 +88,16 @@ export default function Home() {
 
                                     < InputFlotante type="text" id="floating_5" onChange={(e) => handlerOnChange(e)} defaultValue={i[1]['FECHA DE CREACION']} required label={'FECHA DE CREACION'} shadow='shadow-white' />
                                     < InputFlotante type="text" id="floating_5" onChange={(e) => handlerOnChange(e)} defaultValue={i[1]['CODIGO DE SERVICIO']} required label={'CODIGO DE SERVICIO'} shadow='shadow-white' />
-                                    < InputFlotante type="number" id="floating_5" onChange={(e) => handlerOnChange(e)} defaultValue={i[1]['CODIGO DE CLIENTE']} required label={'CODIGO DE CLIENTE'} shadow='shadow-white' />
-                                    < InputFlotante type="number" id="floating_5" onChange={(e) => handlerOnChange(e)} defaultValue={i[1]['MODALIDAD DE TRANSPORTE']} required label={'MODALIDAD DE TRANSPORTE'} shadow='shadow-white' />
+                                    < InputFlotante type="text" id="floating_5" onChange={(e) => handlerOnChange(e)} defaultValue={i[1]['CODIGO DE CLIENTE']} required label={'CODIGO DE CLIENTE'} shadow='shadow-white' />
+                                    < InputFlotante type="text" id="floating_5" onChange={(e) => handlerOnChange(e)} defaultValue={i[1]['MODALIDAD DE TRANSPORTE']} required label={'MODALIDAD DE TRANSPORTE'} shadow='shadow-white' />
                                     < InputFlotante type="text" id="floating_5" onChange={(e) => handlerOnChange(e)} defaultValue={i[1]['DESTINO']} required label={'DESTINO'} shadow='shadow-white' />
                                     < InputFlotante type="text" id="floating_5" onChange={(e) => handlerOnChange(e)} defaultValue={i[1]['MERCANCIA']} required label={'MERCANCIA'} shadow='shadow-white' />
-                                    < InputFlotante type="number" id="floating_5" onChange={(e) => handlerOnChange(e)} defaultValue={i[1]['PESO TN']} required label={'PESO TN'} shadow='shadow-white' />
-                                    < InputFlotante type="number" id="floating_5" onChange={(e) => handlerOnChange(e)} defaultValue={i[1]['SHIPPER']} required label={'SHIPPER'} shadow='shadow-white' />
-                                    < InputFlotante type="number" id="floating_5" onChange={(e) => handlerOnChange(e)} defaultValue={i[1]['CONSIGNATARIO']} required label={'CONSIGNATARIO'} shadow='shadow-white' />
-                                    < InputFlotante type="number" id="floating_5" onChange={(e) => handlerOnChange(e)} defaultValue={i[1]['MANIFIESTO']} required label={'MANIFIESTO'} shadow='shadow-white' />
-                                    < InputFlotante type="number" id="floating_5" onChange={(e) => handlerOnChange(e)} defaultValue={i[1]['ETD']} required label={'ETD'} shadow='shadow-white' />
-                                    < InputFlotante type="number" id="floating_5" onChange={(e) => handlerOnChange(e)} defaultValue={i[1]['ETA']} required label={'ETA'} shadow='shadow-white' />
+                                    < InputFlotante type="text" id="floating_5" onChange={(e) => handlerOnChange(e)} defaultValue={i[1]['PESO TN']} required label={'PESO TN'} shadow='shadow-white' />
+                                    < InputFlotante type="text" id="floating_5" onChange={(e) => handlerOnChange(e)} defaultValue={i[1]['SHIPPER']} required label={'SHIPPER'} shadow='shadow-white' />
+                                    < InputFlotante type="text" id="floating_5" onChange={(e) => handlerOnChange(e)} defaultValue={i[1]['CONSIGNATARIO']} required label={'CONSIGNATARIO'} shadow='shadow-white' />
+                                    < InputFlotante type="text" id="floating_5" onChange={(e) => handlerOnChange(e)} defaultValue={i[1]['MANIFIESTO']} required label={'MANIFIESTO'} shadow='shadow-white' />
+                                    < InputFlotante type="text" id="floating_5" onChange={(e) => handlerOnChange(e)} defaultValue={i[1]['ETD']} required label={'ETD'} shadow='shadow-white' />
+                                    < InputFlotante type="text" id="floating_5" onChange={(e) => handlerOnChange(e)} defaultValue={i[1]['ETA']} required label={'ETA'} shadow='shadow-white' />
 
                                     <h5 className='text-center font-medium text-[16px]'>STATUS +<br /> </h5>
                                     {i[1] && i[1].subItems && Object.values(i[1].subItems).map((item, index) => {

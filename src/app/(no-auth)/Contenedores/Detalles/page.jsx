@@ -46,7 +46,7 @@ function Pages() {
                 <h2 className='font-bold text-[18px] text-[#333] text-center'>{cliente[query].tarjetas[route]['subtitle 1']}</h2>
                 <br />
                 <div className='flex justify-center'>
-                    <video className='' autoPlay loop muted playsInline>
+                    <video className='' autoPlay loop muted playsInline controls>
                         <source src={cliente[query].tarjetas[route].urlVideo} type="video/mp4" />
                     </video>
                 </div>
@@ -56,10 +56,10 @@ function Pages() {
                     {cliente && cliente[query] && cliente[query].tarjetas && cliente[query].tarjetas[route] && cliente[query].tarjetas[route].especificaciones && Object.values(cliente[query].tarjetas[route].especificaciones).map((i, index) => {
                         return <tr>
                             <th className=' border-[1px]  border-[#ccc] p-[8px] text-left font-bold bg-[#f9f9f9]' >
-                                {i.ic}
+                                {i.ip}
                             </th>
                             <td className=' border-[1px]  border-[#ccc] p-[8px] text-left break-words'>
-                                {i.ip}
+                                {i.ic}
                             </td>
                         </tr>
                     })}

@@ -63,7 +63,7 @@ function Item({ e1, e2 }) {
     }}
     initiallyVisible={true}>
     <div className='flex flex-col justify-center items-center'>
-      <span className='text-[30px] font-medium'>{e1}</span>
+      <span className='text-[20px] md:text-[25px] font-medium'>{e1}</span>
       <span className='text-center'>{e2}</span>
     </div>
   </ScrollAnimation>

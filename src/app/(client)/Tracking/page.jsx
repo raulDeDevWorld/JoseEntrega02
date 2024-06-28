@@ -151,38 +151,7 @@ function Pages() {
                         <h5 className=' font-medium text-[16px]'>STATUS <br /> </h5>
 
                         <table className='w-full mt-[20px] border-collapse	table-fixed'>
-                            <tr>
-                                <th className=' border-[1px]  border-[#ccc] p-[8px] text-left font-bold bg-[#f9f9f9]' >
-                                    BOOKING
-                                </th>
-                                <td className=' border-[1px]  border-[#ccc] p-[8px] text-left break-words'>
-                                    {db['BOOKING']}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th className=' border-[1px]  border-[#ccc] p-[8px] text-left font-bold bg-[#f9f9f9]' >
-                                    ZARPE
-                                </th>
-                                <td className=' border-[1px]  border-[#ccc] p-[8px] text-left break-words'>
-                                    {db['ZARPE']}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th className=' border-[1px]  border-[#ccc] p-[8px] text-left font-bold bg-[#f9f9f9]' >
-                                    TRANSITO
-                                </th>
-                                <td className=' border-[1px]  border-[#ccc] p-[8px] text-left break-words'>
-                                    {db['TRANSITO']}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th className=' border-[1px]  border-[#ccc] p-[8px] text-left font-bold bg-[#f9f9f9]' >
-                                    ARRIBO A DESTINO
-                                </th>
-                                <td className=' border-[1px]  border-[#ccc] p-[8px] text-left break-words'>
-                                    {db['ARRIBO A DESTINO']}
-                                </td>
-                            </tr>
+                          
 
                             {db && db.subItems && Object.values(db.subItems).map((item, index) => {
                                 return <tr>

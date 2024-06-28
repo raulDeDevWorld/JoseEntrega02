@@ -76,12 +76,12 @@ export default function Home() {
                     </div>
 
                  
-                    <form className="relative  pt-5 sm:col-span-3 mb-5 pb-5 border-b-[.5px] border-[#666666]"  >
+                    <form className="relative  pt-5 sm:col-span-3 mb-5 pb-5 "  >
 
 
                         {
                             trackingDB && trackingDB && Object.entries(trackingDB).map((i, index) => {
-                                return i[1]['CODIGO DE SERVICIO'] === query ? <div className='relative p-5 my-5 mt-10 bg-white space-y-5 shadow-2xl border-b-[.5px] border-[#666666] '>
+                                return i[1]['CODIGO DE SERVICIO'] === query ? <div className='relative p-5 my-5 mt-10 bg-white space-y-5 shadow-2xl  '>
                                     <h5 className='text-center font-medium text-[16px]'>Editar {query}<br /> <span className='text-[#5c5c5c]'> {i[0]}</span></h5>
 
                                     <h5 className='text-center font-medium text-[16px]'>DETALLE DEL SERVICIO {query}<br /> </h5>

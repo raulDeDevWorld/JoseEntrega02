@@ -10,6 +10,8 @@ import Loader from '@/components/Loader'
 import { useRouter } from 'next/navigation';
 import Modal from '@/components/Modal'
 import InputFlotante from '@/components/InputFlotante'
+import Select from '@/components/SelectTrack'
+import { arrDB } from '@/db/arrDB'
 
 
 
@@ -27,38 +29,31 @@ export default function Home() {
     const [data, setData] = useState({})
     const [data2, setData2] = useState({})
 
+    const [pais2, setPais2] = useState(null)
 
-
-
-    function handlerOnChange(e, key) {
-        setData({ ...data, [key]: { ...data[key], [e.target.name]: e.target.value } })
+    const onClickHandlerCountry = (name, value) => {
+        setPais2(value)
     }
 
 
-
-    console.log(data)
-
-
-
-    function saveFrontPage(e, key) {
-        console.log('jhdjskf')
+    function handlerOnChange(e,) {
+        setData({ ...data, [query]: { ...data[query], [e.target.name]: e.target.value } })
+    }
+    function saveFrontPage(e) {
         e.preventDefault()
-        if (data[key]) {
-            setUserSuccess('Cargando')
-            writeUserData(`/tracking/${key}`, data[key], setUserSuccess)
-        }
-    }
+        setUserSuccess('Cargando')
+        writeUserData(`/Tracking/${query}`, { ...data[query], trackIcon: pais2 ? pais2 : data[query].pais2 }, setUserSuccess)
 
+    }
     function close(e) {
         router.back()
     }
-    console.log(query)
     useEffect(() => {
         if (window && typeof window !== "undefined") {
             setQuery(window.location.href.split('=')[1])
         }
     }, [cliente, trackingDB])
-
+    console.log(query)
     return (
 
         <div className="min-h-full">
@@ -74,17 +69,13 @@ export default function Home() {
                     <div className="absolute w-[50px] top-5 right-5 text-white p-1 rounded-tl-lg rounded-br-lg text-center bg-red-600" onClick={close}>
                         X
                     </div>
-
-                 
                     <form className="relative  pt-5 sm:col-span-3 mb-5 pb-5 "  >
-
-
                         {
                             trackingDB && trackingDB && Object.entries(trackingDB).map((i, index) => {
                                 return i[1]['CODIGO DE SERVICIO'] === query ? <div className='relative p-5 my-5 mt-10 bg-white space-y-5 shadow-2xl  '>
                                     <h5 className='text-center font-medium text-[16px]'>Editar {query}<br /> <span className='text-[#5c5c5c]'> {i[0]}</span></h5>
-
                                     <h5 className='text-center font-medium text-[16px]'>DETALLE DEL SERVICIO {query}<br /> </h5>
+                                    <Select arr={arrDB ? arrDB : []} name='track' uuid='8768' click={onClickHandlerCountry} defaultValue={pais2 ? pais2 : (i[1]['trackIcon'] ? i[1]['trackIcon'] : 'Ninguno')} />
 
                                     < InputFlotante type="text" id="floating_5" onChange={(e) => handlerOnChange(e)} defaultValue={i[1]['FECHA DE CREACION']} required label={'FECHA DE CREACION'} shadow='shadow-white' />
                                     < InputFlotante type="text" id="floating_5" onChange={(e) => handlerOnChange(e)} defaultValue={i[1]['CODIGO DE SERVICIO']} required label={'CODIGO DE SERVICIO'} shadow='shadow-white' />
@@ -114,7 +105,7 @@ export default function Home() {
                                     </div>
 
                                 </div>
-                                : ''
+                                    : ''
                             })
                         }
 

@@ -12,7 +12,8 @@ import { useRouter } from 'next/navigation';
 import Modal from '@/components/Modal'
 import InputFlotante from '@/components/InputFlotante'
 import { generateUUID } from '@/utils/UIDgenerator'
-
+import Select from '@/components/SelectTrack'
+import { arrDB } from '@/db/arrDB'
 export default function Home() {
 
     const { user, introVideo, userDB, setUserProfile, setUserSuccess, success, setUserData, postsIMG, setUserPostsIMG, item, cliente, setCliente, cart, setCart, modal, setModal } = useUser()
@@ -21,7 +22,11 @@ export default function Home() {
     const [data, setData] = useState({})
     const [data2, setData2] = useState({})
 
+    const [pais2, setPais2] = useState('Ninguno')
 
+    const onClickHandlerCountry = (name, value) => {
+        setPais2(value)
+    }
 
     function handlerOnChange(e, key) {
         setData({ ...data, [e.target.name]: e.target.value })
@@ -36,21 +41,15 @@ export default function Home() {
         removeData(`Cliente/priceFCL/${query}/flete/item${Object.keys(data2).length - 1}`, setUserSuccess, () => setData2(db))
         return
     }
-
-
-
-
     function saveFrontPage(e) {
         e.preventDefault()
         let key = generateUUID()
         setUserSuccess('Cargando')
-        writeUserData(`/Tracking/${data['CODIGO DE SERVICIO']}`, { ...data, ['FECHA DE CREACION']: getDate(new Date()), subItems: data2 }, setUserSuccess)
+        writeUserData(`/Tracking/${data['CODIGO DE SERVICIO']}`, { ...data, ['FECHA DE CREACION']: getDate(new Date()), subItems: data2, trackIcon: pais2}, setUserSuccess)
     }
-
     function close(e) {
         router.back()
     }
-
     useEffect(() => {
         if (window && typeof window !== "undefined") {
             setQuery(window.location.href.split('=')[1])
@@ -69,6 +68,7 @@ export default function Home() {
                     <form className="relative  pt-5 sm:col-span-3 mb-5 pb-5 border-b-[.5px] "  >
                         <div className='relative p-5 my-5 mt-10 bg-white space-y-5'>
                             <h5 className='text-center font-medium text-[16px]'>DETALLE DEL SERVICIO {query}<br /> </h5>
+                            <Select arr={arrDB ? arrDB : []} name='track' uuid='8768' click={onClickHandlerCountry} defaultValue={pais2 ? pais2 : 'Ninguno'} />
 
                             < InputFlotante type="date" id="floating_5" onChange={(e) => handlerOnChange(e)} value={getDate(new Date())} disabled required label={'FECHA DE CREACION'} shadow='shadow-white' />
                             < InputFlotante type="text" id="floating_5" onChange={(e) => handlerOnChange(e)} defaultValue={data['CODIGO DE SERVICIO']} required label={'CODIGO DE SERVICIO'} shadow='shadow-white' />

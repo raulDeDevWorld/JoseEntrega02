@@ -80,47 +80,47 @@ function Section({ subtitle, description, video, gradiente, id, children, tarjet
   return <section className='relative w-full  bg-gradient-to-tr from-[#00195c] via-[#274492] to-[#00195c] overflow-x-hidden overflow-hidden' id={id}>
     {/* <div className='relative px-5 py-12 w-full min-h-[50vh] flex flex-col z-30 lg:grid lg:grid-cols-2 justify-around items-center  from-[#00195cdc] via-[#00195cb6] to-[#00195cdc] '> */}
 
-      <div className='relative px-5 py-12 w-full min-h-[50vh] lg:px-[100px] flex flex-col z-30  justify-around items-center  from-[#00195cdc] via-[#00195cb6] to-[#00195cdc] '>
-        <div>
-          <Subtitle><h3 className='text-[30px] text-[white] text-center font-medium  py-10'>{subtitle}</h3></Subtitle>
-          <ScrollAnimation animateIn='bounceInLeft'
-            animateOut='bounceOutLeft'
-            initiallyVisible={true}
-          >
-            <p className=' text-[16px] text-[white] pb-5' dangerouslySetInnerHTML={{ __html: description }}>
-            </p>
-            <div className='flex justify-start '>
-              <button type="button" className="w-full border-[2px] md:max-w-[300px] text-gray-900 bg-[#F7BE38] hover:bg-[#F7BE38]/90 focus:ring-4 focus:outline-none focus:ring-[#F7BE38]/50 font-medium rounded-lg text-[12px] px-5 py-2.5 text-center inline-flex items-center " onClick={() => redirectHandlerWindow(`https://api.whatsapp.com/send?phone=${cliente.contactos.celular}&text=hola%20Logistics%20Gear,%20quiero%20ordenar%20un%20servicio%20${subtitle}%20`)}>
-                Orden de servicio
-                <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                  <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
-                </svg>
-              </button>
-            </div>
-          </ScrollAnimation>
-        </div>
-        <div className='w-full text-[white] grid grid-cols-2 gap-5 py-12'>
-          {cliente && cliente[id] && cliente[id].miniTarjetas && Object.values(cliente[id].miniTarjetas).map((i, index) => <Item e1={i[`ip`]} e2={i[`ic`]} />)}
-        </div>
-
-      </div>
-
-      {/* ---------------------------------------------Tarjetas---------------------------------------- */}
-      <div className='relative min-h-screen  w-full flex flex-col justify-top lg:flex-wrap  lg:flex-row lg:justify-center lg:items-center  z-20  '>
-
-        <video className='absolute bottom-0  w-full h-full min-h-[100vh] object-cover z-10' autoPlay loop muted playsInline>
-          <source src={video} type="video/mp4" />
-        </video>
-        <div className='absolute top-0  w-full min-h-[100vh] h-full object-cover z-20 bg-gradient-to-tr from-[#00195c]  via-[#cfbd7546] to-[#00195c]    lg:bg-gradient-to-tr lg:from-[#00195cd7]  lg:via-[#cfbd7546] lg:to-[#00195c] '></div>
-
-
-
-        {cliente && cliente[id] && cliente[id].tarjetas && Object.entries(tarjetas).map((i, index) => {
-          return <div className='inline px-5 z-50' key={index}>
-            <Componente route={i[0]} id={id} db={i[1]} title={i[1].title} image={i[1].url} paragraph={i[1].paragraph} />
+    <div className='relative px-5 py-12 w-full min-h-[50vh] lg:px-[100px] flex flex-col z-30  justify-around items-center  from-[#00195cdc] via-[#00195cb6] to-[#00195cdc] '>
+      <div>
+        <Subtitle><h3 className='text-[30px] text-[white] text-center font-medium  py-10'>{subtitle}</h3></Subtitle>
+        <ScrollAnimation animateIn='bounceInLeft'
+          animateOut='bounceOutLeft'
+          initiallyVisible={true}
+        >
+          <p className=' text-[16px] text-[white] pb-5' dangerouslySetInnerHTML={{ __html: description }}>
+          </p>
+          <div className='flex justify-start '>
+            <button type="button" className="w-full border-[2px] md:max-w-[300px] text-gray-900 bg-[#F7BE38] hover:bg-[#F7BE38]/90 focus:ring-4 focus:outline-none focus:ring-[#F7BE38]/50 font-medium rounded-lg text-[12px] px-5 py-2.5 text-center inline-flex items-center " onClick={() => redirectHandlerWindow(`https://api.whatsapp.com/send?phone=${cliente.contactos.celular}&text=hola%20Logistics%20Gear,%20quiero%20ordenar%20un%20servicio%20${subtitle}%20`)}>
+              Orden de servicio
+              <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+              </svg>
+            </button>
           </div>
-        })}
+        </ScrollAnimation>
       </div>
+      <div className='w-full text-[white] grid grid-cols-2 gap-5 py-12'>
+        {cliente && cliente[id] && cliente[id].miniTarjetas && Object.values(cliente[id].miniTarjetas).map((i, index) => <Item e1={i[`ip`]} e2={i[`ic`]} />)}
+      </div>
+
+    </div>
+
+    {/* ---------------------------------------------Tarjetas---------------------------------------- */}
+    <div className='relative min-h-screen  w-full flex flex-col justify-top lg:flex-wrap  lg:flex-row lg:justify-center lg:items-center  z-20  '>
+
+      <video className='absolute bottom-0  w-full h-full min-h-[100vh] object-cover z-10' autoPlay loop muted playsInline>
+        <source src={video} type="video/mp4" />
+      </video>
+      <div className='absolute top-0  w-full min-h-[100vh] h-full object-cover z-20 bg-gradient-to-tr from-[#00195c]  via-[#cfbd7546] to-[#00195c]    lg:bg-gradient-to-tr lg:from-[#00195cd7]  lg:via-[#cfbd7546] lg:to-[#00195c] '></div>
+
+
+
+      {cliente && cliente[id] && cliente[id].tarjetas && Object.entries(tarjetas).map((i, index) => {
+        return <div className='inline px-5 z-50' key={index}>
+          <Componente route={i[0]} id={id} db={i[1]} title={i[1].title} image={i[1].url} paragraph={i[1].paragraph} />
+        </div>
+      })}
+    </div>
 
   </section>
 
@@ -148,7 +148,11 @@ export default function Home() {
     window.open(ref, '_blank')
   }
 
+  
+  function handlerClickSelect2(e) {
+    setSelectValue({...selectValue, SERVICIO: e})
 
+  }
   function handlerOnChangeQR(e) {
     QRreaderUtils(e, setCode)
 
@@ -496,7 +500,20 @@ export default function Home() {
                   <InputFlotante type="number" name={'VOLUMEN M3'} id="floating_5" onChange={handlerOnChange} defaultValue={selectValue['VOLUMEN']} required label={'Volumen M3'} />
                   <SelectSimple arr={inputRef.current ? Object.values(cliente.priceFTL).filter((i) => i.ORIGEN === inputRef.current.value && i.DESTINO === inputRef2.current.value).map((i) => i['TIPO DE UNIDAD']).filter(onlyUnique) : []} name='TIPO DE UNIDAD' click={handlerClickSelect} defaultValue={selectValue['TIPO DE UNIDAD'] ? selectValue['TIPO DE UNIDAD'] : 'Seleccionar'} uuid='8768798' label='Tipo de unidad' required={true}></SelectSimple>
                   <SelectSimple arr={inputRef.current ? Object.values(cliente.priceFTL).filter((i) => i.ORIGEN === inputRef.current.value && i.DESTINO === inputRef2.current.value).map((i) => i.MERCANCIA).filter(onlyUnique) : []} name='MERCANCIA' click={handlerClickSelect} defaultValue={selectValue['MERCANCIA'] ? selectValue['MERCANCIA'] : 'Seleccionar'} uuid='8768798' label='Mercancia' required={true}></SelectSimple>
-                  <SelectSimple arr={inputRef.current ? Object.values(cliente.priceFTL).filter((i) => i.ORIGEN === inputRef.current.value && i.DESTINO === inputRef2.current.value).map((i) => i['SERVICIO']).filter(onlyUnique) : []} name='SERVICIO' click={handlerClickSelect} defaultValue={selectValue['SERVICIO'] ? selectValue['SERVICIO'] : 'Seleccionar'} uuid='8768798' label='Servicio' required={true}></SelectSimple>
+                  {/* <SelectSimple arr={inputRef.current ? Object.values(cliente.priceFTL).filter((i) => i.ORIGEN === inputRef.current.value && i.DESTINO === inputRef2.current.value).map((i) => i['SERVICIO']).filter(onlyUnique) : []} name='SERVICIO' click={handlerClickSelect} defaultValue={selectValue['SERVICIO'] ? selectValue['SERVICIO'] : 'Seleccionar'} uuid='8768798' label='Servicio' required={true}></SelectSimple> */}
+                  <div className='flex  justify-around col-span-2'>
+                    <div class="flex items-center ">
+                      <input id="checkbox_1" type="checkbox" checked={selectValue['SERVICIO'] === 'SIN DEVOLUCION'} value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-100 focus:ring-1 "  onClick={()=>handlerClickSelect2('SIN DEVOLUCION')}  />
+                      <label for="checkbox_1" class="ms-2 text-sm font-medium text-gray-900 ">Sin devolucion</label>
+                    </div>
+                   {Object.values(cliente.priceFTL) &&  Object.values(cliente.priceFTL).filter((i) => i.ORIGEN === inputRef.current.value && i.DESTINO === inputRef2.current.value)    &&Object.values(cliente.priceFTL).filter((i) => i.ORIGEN === inputRef.current.value && i.DESTINO === inputRef2.current.value).map((i) => i['SERVICIO']).filter(onlyUnique).length  == 2 && <div class="flex items-center">
+                      <input id="checkbox_2" type="checkbox" checked={selectValue['SERVICIO'] === 'CON DEVOLUCION'} value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-100 focus:ring-1 " onClick={()=>handlerClickSelect2('CON DEVOLUCION')}/>
+                      <label for="checkbox_2" class="ms-2 text-sm font-medium text-gray-900 ">Con devolucion</label>
+                    </div>}
+                  </div>
+
+
+
                   {selectValue['VOLUMEN M3'] <= 43 && selectValue['PESO (KG)'] <= 25000
                     ? <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-[12px] w-full  px-5 py-2.5 text-center  mt-7 lg:col-span-2">Cotizar</button>
                     : <button type="submit" className=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-[12px] w-full  px-5 py-2.5 text-center  mt-7 lg:col-span-2          text-white bg-green-500 hover:bg-red-600     " onClick={HandlerCheckOut2}>Solicitar Cotizacion</button>
